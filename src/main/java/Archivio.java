@@ -1,26 +1,41 @@
 import jakarta.persistence.EntityManager;
 
 public class Archivio {
-    private EntityManager em;
+    private ElementoCatalogoDAO elementoDAO;
+    private UtenteDAO utenteDAO;
+    private PrestitoDAO prestitoDAO;
 
     public Archivio(EntityManager em) {
-        this.em = em;
+        this.elementoDAO = new ElementoCatalogoDAO(em);
+        this.utenteDAO = new UtenteDAO(em);
+        this.prestitoDAO = new PrestitoDAO(em);
     }
 
     public void aggiungiElemento(ElementoCatalogo elemento) {
-        em.getTransaction().begin();
-        em.persist(elemento);
-        em.getTransaction().commit();
+        elementoDAO.save(elemento);
     }
 
     public void rimuoviElemento(String isbn) {
-        em.getTransaction().begin();
-        ElementoCatalogo elemento = em.find(ElementoCatalogo.class, isbn);
-        if (elemento != null) em.remove(elemento);
-        em.getTransaction().commit();
+        elementoDAO.deleteByIsbn(isbn);
     }
 
     public ElementoCatalogo cercaPerIsbn(String isbn) {
-        return em.find(ElementoCatalogo.class, isbn);
+        return elementoDAO.findByIsbn(isbn);
+    }
+
+    public void aggiungiUtente(Utente utente) {
+        utenteDAO.save(utente);
+    }
+
+    public Utente cercaUtente(Long id) {
+        return utenteDAO.findById(id);
+    }
+
+    public void aggiungiPrestito(Prestito prestito) {
+        prestitoDAO.save(prestito);
+    }
+
+    public Prestito cercaPrestito(Long id) {
+        return prestitoDAO.findById(id);
     }
 }

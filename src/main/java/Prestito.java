@@ -14,20 +14,18 @@ public class Prestito {
     @ManyToOne
     private ElementoCatalogo elementoPrestato;
 
-    private LocalDate dataInizioPrestito;
+    private LocalDate dataInizio;
     private LocalDate dataRestituzionePrevista;
     private LocalDate dataRestituzioneEffettiva;
 
     public Prestito() {}
 
-    public Prestito(Utente utente, ElementoCatalogo elementoPrestato, LocalDate dataInizioPrestito) {
+    public Prestito(Utente utente, ElementoCatalogo elementoPrestato, LocalDate dataInizio) {
         this.utente = utente;
         this.elementoPrestato = elementoPrestato;
-        this.dataInizioPrestito = dataInizioPrestito;
-        this.dataRestituzionePrevista = dataInizioPrestito.plusDays(30);
+        this.dataInizio = dataInizio;
+        this.dataRestituzionePrevista = dataInizio.plusDays(30);
     }
-
-
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -38,10 +36,10 @@ public class Prestito {
     public ElementoCatalogo getElementoPrestato() { return elementoPrestato; }
     public void setElementoPrestato(ElementoCatalogo elementoPrestato) { this.elementoPrestato = elementoPrestato; }
 
-    public LocalDate getDataInizioPrestito() { return dataInizioPrestito; }
-    public void setDataInizioPrestito(LocalDate dataInizioPrestito) {
-        this.dataInizioPrestito = dataInizioPrestito;
-        this.dataRestituzionePrevista = dataInizioPrestito.plusDays(30);
+    public LocalDate getDataInizio() { return dataInizio; }
+    public void setDataInizio(LocalDate dataInizio) {
+        this.dataInizio = dataInizio;
+        this.dataRestituzionePrevista = dataInizio.plusDays(30);
     }
 
     public LocalDate getDataRestituzionePrevista() { return dataRestituzionePrevista; }
