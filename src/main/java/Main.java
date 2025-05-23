@@ -11,7 +11,7 @@ public class Main {
 
         Archivio archivio = new Archivio(em);
 
-        // Prova Utente
+
         Utente utente = new Utente();
         utente.setNome("Mario");
         utente.setCognome("Rossi");
@@ -19,7 +19,7 @@ public class Main {
         utente.setNumeroTessera("T12345");
         archivio.aggiungiUtente(utente);
 
-        // Prova ElementoCatalogo (Libro)
+
         Libro libro = new Libro();
         libro.setIsbn("1234567898");
         libro.setTitolo("Harry Potter 2");
@@ -29,7 +29,7 @@ public class Main {
         libro.setGenere("Fantasy");
         archivio.aggiungiElemento(libro);
 
-        // Prova Prestito
+
         Prestito prestito = new Prestito();
         prestito.setUtente(utente);
         prestito.setElementoPrestato(libro);
